@@ -1,7 +1,8 @@
-import 'package:first_work/screens/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:first_work/models/items.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import 'screens.dart';
+import '../models/items.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';
@@ -11,7 +12,7 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  List<Widget> slides = items
+  final List<Widget> slides = items
       .map(
         (item) => Container(
           child: Column(
@@ -20,7 +21,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 flex: 3,
                 fit: FlexFit.tight,
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 20.0),
+                  padding: const EdgeInsets.only(bottom: 20.0),
                   child: SvgPicture.asset(
                     item['image'],
                     width: 220,
@@ -36,13 +37,19 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   children: [
                     Text(
                       item['header'],
-                      style: TextStyle(fontSize: 26.0, color: Colors.black),
+                      style: const TextStyle(
+                        fontSize: 26.0,
+                        color: Colors.black,
+                      ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 8.0),
+                      padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
                         item['description'],
-                        style: TextStyle(fontSize: 18.0, color: Colors.black38),
+                        style: const TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.black38,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -55,17 +62,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       )
       .toList();
 
-  double currentPage = 0.0;
+  double _currentPage = 0.0;
   final _pageViewController = PageController();
 
   List<Widget> indicator() => List<Widget>.generate(
         slides.length,
         (index) => Container(
-          margin: EdgeInsets.symmetric(horizontal: 3.0),
+          margin: const EdgeInsets.symmetric(horizontal: 3.0),
           height: 10.0,
           width: 10.0,
           decoration: BoxDecoration(
-            color: currentPage.round() == index
+            color: _currentPage.round() == index
                 ? Color(0xFF256075)
                 : Color(0xFF256075).withOpacity(0.2),
             borderRadius: BorderRadius.circular(10.0),
@@ -85,7 +92,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               itemBuilder: (BuildContext context, int index) {
                 _pageViewController.addListener(() {
                   setState(() {
-                    currentPage = _pageViewController.page;
+                    _currentPage = _pageViewController.page ?? 0;
                   });
                 });
                 return slides[index];
@@ -94,21 +101,21 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                margin: EdgeInsets.only(top: 70.0),
-                padding: EdgeInsets.symmetric(vertical: 40.0),
+                margin: const EdgeInsets.only(top: 70.0),
+                padding: const EdgeInsets.symmetric(vertical: 40.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: indicator(),
                 ),
               ),
             ),
-            currentPage == slides.length - 1
+            _currentPage == slides.length - 1
                 ? Align(
                     alignment: Alignment.bottomRight,
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(0.0, 0.0, 20.0, 20.0),
                       child: TextButton(
-                        child: Text(
+                        child: const Text(
                           'Start',
                           style: TextStyle(color: Colors.blue, fontSize: 18),
                         ),
@@ -123,7 +130,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ),
                     ),
                   )
-                : Text('')
+                : const Text('')
           ],
         ),
       ),

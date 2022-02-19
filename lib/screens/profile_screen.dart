@@ -1,15 +1,16 @@
-import 'package:first_work/models/account.dart';
-import 'package:first_work/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
-Account _account;
+import 'screens.dart';
+import '../models/account.dart';
+
+Account? _account;
 
 class ProfileScreen extends StatefulWidget {
   static const String id = "profile_screen";
 
-  final Account account;
+  final Account? account;
 
-  const ProfileScreen({Key key, this.account}) : super(key: key);
+  const ProfileScreen({Key? key, this.account}) : super(key: key);
 
   @override
   _ProfileScreenState createState() {
@@ -28,22 +29,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           Container(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(
+                vertical: 30.0,
+                horizontal: 16.0,
+              ),
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(bottom: 16.0),
+                    padding: const EdgeInsets.only(bottom: 16.0),
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(bottom: 32.0),
+                          padding: const EdgeInsets.only(bottom: 32.0),
                           child: Image.asset(
                             'assets/images/welcome.png',
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(64.0),
+                          padding: const EdgeInsets.all(64.0),
                           child: Image.asset(
                             'assets/images/congratulations.png',
                           ),
@@ -51,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ],
                     ),
                   ),
-                  Text(
+                  const Text(
                     "Info:",
                     style: TextStyle(
                       color: Colors.green,
@@ -59,12 +63,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       fontSize: 28.0,
                     ),
                   ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
+                  const SizedBox(height: 10.0),
                   Text(
-                    _account.email,
-                    style: TextStyle(
+                    _account?.email ?? '',
+                    style: const TextStyle(
                       fontSize: 22.0,
                       fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.w300,
@@ -73,8 +75,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   Text(
-                    _account.password,
-                    style: TextStyle(
+                    _account?.password ?? '',
+                    style: const TextStyle(
                       fontSize: 22.0,
                       fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.w300,
@@ -86,9 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
           ),
-          SizedBox(
-            height: 20.0,
-          ),
+          const SizedBox(height: 20.0),
           Container(
             width: 300.00,
             child: TextButton(
@@ -105,7 +105,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   gradient: LinearGradient(
                     begin: Alignment.centerRight,
                     end: Alignment.centerLeft,
-                    colors: [
+                    colors: const [
                       Colors.green,
                       Colors.greenAccent,
                     ],
@@ -113,14 +113,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   borderRadius: BorderRadius.circular(30.0),
                 ),
                 child: Container(
-                  constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                  constraints: const BoxConstraints(
+                    maxWidth: 300.0,
+                    minHeight: 50.0,
+                  ),
                   alignment: Alignment.center,
-                  child: Text(
+                  child: const Text(
                     'Logout',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26.0,
-                        fontWeight: FontWeight.w300),
+                      color: Colors.white,
+                      fontSize: 26.0,
+                      fontWeight: FontWeight.w300,
+                    ),
                   ),
                 ),
               ),

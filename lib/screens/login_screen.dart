@@ -1,7 +1,7 @@
-import 'package:first_work/models/account.dart';
-import 'package:first_work/screens/profile_screen.dart';
-import 'package:first_work/screens/register_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'screens.dart';
+import '../models/account.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -11,8 +11,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String email = '';
-  String password = '';
+  String _email = '';
+  String _password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +25,14 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.only(top: 60.0),
               child: Center(
                 child: Container(
-                    width: 200,
-                    height: 150,
-                    child: Image.asset('assets/images/logo.png')),
+                  width: 200,
+                  height: 150,
+                  child: Image.asset('assets/images/logo.png'),
+                ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(
+              padding: const EdgeInsets.fromLTRB(
                 15.0,
                 20.0,
                 15.0,
@@ -40,10 +41,10 @@ class _LoginScreenState extends State<LoginScreen> {
               child: TextField(
                 keyboardType: TextInputType.emailAddress,
                 onChanged: (value) {
-                  email = value;
+                  _email = value;
                 },
                 textInputAction: TextInputAction.next,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Email',
                   hintText: 'Enter valid email id as abc@gmail.com',
@@ -52,13 +53,17 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(
-                  left: 15.0, right: 15.0, top: 15, bottom: 0),
+                left: 15.0,
+                right: 15.0,
+                top: 15,
+                bottom: 0,
+              ),
               child: TextField(
                 onChanged: (value) {
-                  password = value;
+                  _password = value;
                 },
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',
                   hintText: 'Enter secure password',
@@ -71,14 +76,14 @@ class _LoginScreenState extends State<LoginScreen> {
             TextButton(
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                  const SnackBar(
                     content: Text(
                       'Not implemented yet',
                     ),
                   ),
                 );
               },
-              child: Text(
+              child: const Text(
                 'Forgot Password',
                 style: TextStyle(color: Colors.blue, fontSize: 15),
               ),
@@ -92,9 +97,9 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               child: TextButton(
                 onPressed: () {
-                  if (email.isEmpty || password.isEmpty) {
+                  if (_email.isEmpty || _password.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text(
                           'Please fill out all fields',
                         ),
@@ -106,25 +111,23 @@ class _LoginScreenState extends State<LoginScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => ProfileScreen(
-                        account: Account(email, password),
+                        account: Account(_email, _password),
                       ),
                     ),
                   );
                 },
-                child: Text(
+                child: const Text(
                   'Login',
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
               ),
             ),
-            SizedBox(
-              height: 130,
-            ),
+            const SizedBox(height: 130),
             TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, RegisterScreen.id);
               },
-              child: Text(
+              child: const Text(
                 'New user? Create an account',
                 style: TextStyle(
                   color: Colors.blue,

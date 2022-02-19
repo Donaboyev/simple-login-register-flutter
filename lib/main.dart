@@ -1,9 +1,6 @@
-import 'package:first_work/screens/login_screen.dart';
-import 'package:first_work/screens/profile_screen.dart';
-import 'package:first_work/screens/register_screen.dart';
-import 'package:first_work/screens/welcome_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'screens/screens.dart';
 
 void main() => runApp(MyApp());
 

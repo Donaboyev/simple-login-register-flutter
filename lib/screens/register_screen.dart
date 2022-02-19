@@ -8,8 +8,8 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  String email = '';
-  String password = '';
+  String _email = '';
+  String _password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +19,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 60.0),
+              padding: const EdgeInsets.only(top: 60.0),
               child: Center(
                 child: Container(
-                    width: 200,
-                    height: 150,
-                    child: Image.asset('assets/images/logo.png')),
+                  width: 200,
+                  height: 150,
+                  child: Image.asset('assets/images/logo.png'),
+                ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(
+              padding: const EdgeInsets.fromLTRB(
                 15.0,
                 20.0,
                 15.0,
@@ -36,25 +37,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               child: TextField(
                 onChanged: (value) {
-                  email = value;
+                  _email = value;
                 },
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
-                    hintText: 'Enter valid email id as abc@gmail.com'),
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Email',
+                  hintText: 'Enter valid email id as abc@gmail.com',
+                ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(
-                  left: 15.0, right: 15.0, top: 15, bottom: 0),
+                left: 15.0,
+                right: 15.0,
+                top: 15,
+                bottom: 0,
+              ),
               child: TextField(
                 onChanged: (value) {
-                  password = value;
+                  _password = value;
                 },
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',
                   hintText: 'Enter secure password',
@@ -65,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 20),
+              margin: const EdgeInsets.only(top: 20),
               height: 50,
               width: 250,
               decoration: BoxDecoration(
@@ -74,9 +80,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               child: TextButton(
                 onPressed: () {
-                  if (email.isEmpty || password.isEmpty) {
+                  if (_email.isEmpty || _password.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text(
                           'Please fill out all fields',
                         ),
@@ -85,26 +91,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     return;
                   }
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Successfully created account'),
                     ),
                   );
                   Navigator.pop(context);
                 },
-                child: Text(
+                child: const Text(
                   'Register',
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
               ),
             ),
-            SizedBox(
-              height: 130,
-            ),
+            const SizedBox(height: 130),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text(
+              child: const Text(
                 'Already a member? Login',
                 style: TextStyle(
                   color: Colors.blue,
